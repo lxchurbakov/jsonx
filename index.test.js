@@ -28,3 +28,16 @@ describe('refs', () => {
         });
     });
 });
+
+describe('callables', () => {
+    it('work', () => {
+        expect(digest({ 
+            fib: ['@?', ['@<', ['@ref', 0], 2], 1, 
+                ['@+',
+                    ['@fib', ['@+', ['@ref', 0], -1]],
+                    ['@fib', ['@+', ['@ref', 0], -2]]
+                ]
+            ]
+        }, { value: ['@fib', 7] })).toStrictEqual({ value: 21 })
+    });
+});     
